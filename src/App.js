@@ -3,18 +3,27 @@ import "./App.css";
 import Header from "./Header";
 // import TodoList from "./TodoList";
 
-const numbers = [1, 2, 3];
 class App extends Component {
+  state = {
+    counter: 0
+  };
+
+  click = async () => {
+    // Wait for setState finished
+    await this.setState({
+      counter: this.state.counter + 1
+    });
+    console.log("CLICK!", this.state.counter);
+  };
   render() {
     return (
       <div>
-        <h1>Hello</h1>
-        {numbers.map(item => {
-          return <Header />;
-        })}
+        <Header />
+        <p>{this.state.name}</p>
+        <p>{this.state.counter} clicks</p>
+        <button onClick={this.click}>Click Me!</button>
       </div>
     );
   }
 }
-
 export default App;
